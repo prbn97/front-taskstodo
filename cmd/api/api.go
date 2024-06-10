@@ -6,7 +6,6 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/prbn97/tasklist/services/user"
 )
 
 type APIserver struct {
@@ -26,13 +25,7 @@ func (tasklist *APIserver) Run() error {
 
 	// build API routes services
 	router := mux.NewRouter()
-	subrouter := router.PathPrefix("/api/v1").Subrouter()
-
-	userStore := user.NewStore(tasklist.db)
-	userHandler := user.NewHandler(userStore)
-	userHandler.RegisterRoutes(subrouter)
-
-	// build API routes services
+	// subrouter := router.PathPrefix("/api/v1").Subrouter()
 
 	server := http.Server{
 		Addr:    tasklist.addr,
