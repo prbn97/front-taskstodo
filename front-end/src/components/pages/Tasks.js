@@ -1,17 +1,15 @@
-import logo from './img/logo.svg';
-const Home = () => {
+import Title from '../Title';
+const Tasks = () => {
     return (
         <>
             <div className="col">
-                <div className="row text-center mt-4">
-                    <h4><img
-                        alt=""
-                        src={logo}
-                        width="30"
-                        height="30"
-                        className="d-inline-block align-top"
-                    />{' '}List of <strong className='text-Dark'>Tasks</strong></h4>
+                <div className="row justify-content-center">
+                    <div className="col-auto">
+                        <Title />
+                    </div>
                 </div>
+
+
                 <div className="row m-4">
                     <div className="col">
 
@@ -42,9 +40,8 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-
         </>
     );
 }
 
-export default Home;
+export default Tasks;
