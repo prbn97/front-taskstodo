@@ -1,5 +1,5 @@
+import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
-import Home from "./components/Home";
 
 function App() {
   return (
@@ -9,24 +9,13 @@ function App() {
         <Header />
       </div>
 
-      <div className="row justify-content-left">
+      <div className="row justify-content-center">
 
-        <div className="col-1">
-          <nav>
-            <div className="list-group">
-              <a href="#!" className="list-group-item list-group-item-action">Home</a>
-              <a href="#!" className="list-group-item list-group-item-action">Movies</a>
-            </div>
-          </nav>
-        </div>
-
-
-        <div className="col">
-          <Home />
+        <div className="col-6">
+          <Outlet />
         </div>
 
       </div>
-
 
     </div >
   );

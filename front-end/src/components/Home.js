@@ -1,12 +1,19 @@
+import logo from './img/logo.svg';
 const Home = () => {
     return (
         <>
             <div className="col">
-                <div className="row text-center">
-                    <h4>*icon* Task <span><strong>List</strong></span></h4>
+                <div className="row text-center mt-4">
+                    <h4><img
+                        alt=""
+                        src={logo}
+                        width="30"
+                        height="30"
+                        className="d-inline-block align-top"
+                    />{' '}List of <strong className='text-Dark'>Tasks</strong></h4>
                 </div>
-                <div className="row justify-content-center mt-4">
-                    <div className="col-8">
+                <div className="row m-4">
+                    <div className="col">
 
                         <div className="card mb-3">
                             <div className="card-body">
