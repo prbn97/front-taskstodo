@@ -1,15 +1,18 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 
-function Login({ setJwtToken }) {
+function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const { setUser, setJwtToken } = useOutletContext();
 
     const handleLogin = () => {
-        // Simulate a login and set the JWT token
-        const fakeJwtToken = "";
+        // Simulate a login and set the JWT token and user info
+        const fakeJwtToken = "fake-jwt-token";
+        const fakeUser = { name: "Paulo", email: "paulo@example.com" };
         setJwtToken(fakeJwtToken);
+        setUser(fakeUser);
         navigate("/tasks");
     };
 

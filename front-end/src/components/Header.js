@@ -6,13 +6,14 @@ import create from './img/create.svg';
 import login from './img/login.svg';
 import Title from './Title';
 
-function Header({ jwtToken, setJwtToken }) {
+function Header({ jwtToken, setJwtToken, user, setUser }) {
     const [showModal, setShowModal] = useState(false);
     const handleCloseModal = () => setShowModal(false);
     const handleOpenModal = () => setShowModal(true);
 
     const handleLogout = () => {
         setJwtToken("");
+        setUser(null);
     };
 
     return (
@@ -51,17 +52,22 @@ function Header({ jwtToken, setJwtToken }) {
                                         className="d-inline-block align-top m-2"
                                     />
                                 </Nav.Link>
-                                : <Nav.Link as={Link} to="/" onClick={handleLogout} className="d-flex align-items-center">
-                                    Logout
-                                    <img alt="" src={login} width="30" height="30"
-                                        className="d-inline-block align-top m-2"
-                                    />
-                                </Nav.Link>
+                                : <>
+                                    <span className="navbar-text me-3">
+                                        {user ? `Welcome, ${user.name}` : ""}
+                                    </span>
+                                    <Nav.Link as={Link} to="/" onClick={handleLogout} className="d-flex align-items-center">
+                                        Logout
+                                        <img alt="" src={login} width="30" height="30"
+                                            className="d-inline-block align-top m-2"
+                                        />
+                                    </Nav.Link>
+                                </>
                             }
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
-            </Navbar>
+            </Navbar >
 
             <Modal show={showModal} onHide={handleCloseModal}>
                 <Modal.Header closeButton>

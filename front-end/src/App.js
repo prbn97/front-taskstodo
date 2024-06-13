@@ -4,15 +4,16 @@ import Header from "./components/Header";
 
 function App() {
   const [jwtToken, setJwtToken] = useState("");
+  const [user, setUser] = useState(null); // Estado para armazenar as informações do usuário
 
   return (
     <div className="Container">
       <div className="row">
-        <Header jwtToken={jwtToken} setJwtToken={setJwtToken} />
+        <Header jwtToken={jwtToken} setJwtToken={setJwtToken} user={user} setUser={setUser} />
       </div>
       <div className="row justify-content-center">
         <div className="col-6">
-          <Outlet />
+          <Outlet context={{ user, setUser, setJwtToken }} />
         </div>
       </div>
     </div>
