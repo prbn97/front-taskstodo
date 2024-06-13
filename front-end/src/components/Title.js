@@ -1,16 +1,15 @@
-import logo from './img/logo.svg';
-const Title = () => {
+const Title = ({ icon, text }) => {
     return (
-        <div className="d-flex align-items-center">
+        <div className="d-flex align-items mt-2 ">
             <img
                 alt="icon-title"
-                src={logo}
+                src={icon}
                 width="30"
                 height="30"
-                className="d-inline-block align-top me-2"
+                className="me-1"
             />
             <h4>
-                {' '}List of <strong className="text-dark">Tasks</strong>
+                {text}
             </h4>
         </div>
     );

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Container, Nav, Navbar, Modal, Button } from 'react-bootstrap';
 import logo from './img/logo.svg';
 import login from './img/login.svg';
+import Title from './Title';
 
 function Header() {
     const [showModal, setShowModal] = useState(false);
@@ -23,7 +24,7 @@ function Header() {
                             className="d-inline-block align-top"
                         />
                         <h4 className="mb-0 ms-2">
-                            Tasks to <strong className='text-Dark'>Do</strong>
+                            Tasks to<strong className='text-Dark'>Do</strong>
                         </h4>
                     </Navbar.Brand>
 
@@ -49,7 +50,9 @@ function Header() {
 
             <Modal show={showModal} onHide={handleCloseModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Create Task</Modal.Title>
+                    <Modal.Title>
+                        <Title icon={logo} text="Create Tasks" />
+                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {/* Aqui você pode colocar seu formulário de criação de tarefa */}

@@ -1,11 +1,34 @@
+import { useEffect, useState } from "react";
+import logo from '../img/logo.svg';
 import Title from '../Title';
+import { Link } from "react-router-dom";
+
 const Tasks = () => {
+    const [tasks, setTasks] = useState([]);
+    useEffect(() => {
+        let mockTaskList = [
+            {
+                id: 1,
+                title: "Task 1",
+                description: "description of the task #1",
+                status: "toDo",
+            },
+            {
+                id: 2,
+                title: "Task 2",
+                description: "description of the task #2",
+                status: "ToDo",
+            },
+        ]
+        setTasks(mockTaskList)
+    }, []);
     return (
         <>
-            <div className="col">
+            <div className="container">
+
                 <div className="row justify-content-center">
                     <div className="col-auto">
-                        <Title />
+                        <Title icon={logo} text="List of Tasks" />
                     </div>
                 </div>
 
@@ -13,32 +36,23 @@ const Tasks = () => {
                 <div className="row m-4">
                     <div className="col">
 
-                        <div className="card mb-3">
-                            <div className="card-body">
-                                <h5 className="card-title">Task 1</h5>
-                                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet quam sit amet purus molestie fermentum vel commodo libero. Suspendisse hendrerit turpis ut ullamcorper ornare.</p>
-                                <span className="badge bg-danger">Status: ToDo</span>
-                            </div>
-                        </div>
 
-                        <div className="card mb-3">
-                            <div className="card-body">
-                                <h5 className="card-title">Task 2</h5>
-                                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet quam sit amet purus molestie fermentum vel commodo libero. Suspendisse hendrerit turpis ut ullamcorper ornare.</p>
-                                <span className="badge bg-warning">Status: In Progress</span>
-                            </div>
-                        </div>
+                        {tasks.map((listItem) => (
+                            <Link to={`/tasks/${listItem.id}`}><div className="card mb-3 ">
+                                <div key={listItem.id} className="card-body ">
+                                    <h5 className="card-title" >{listItem.title}</h5>
+                                    <p className="card-text">{listItem.description}</p>
+                                    <span className="badge bg-danger">Status: {listItem.status}</span>
 
-                        <div className="card mb-3">
-                            <div className="card-body">
-                                <h5 className="card-title">Task 3</h5>
-                                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet quam sit amet purus molestie fermentum vel commodo libero. Suspendisse hendrerit turpis ut ullamcorper ornare.</p>
-                                <span className="badge bg-success">Status: Completed</span>
-                            </div>
-                        </div>
+                                </div>
+                            </div></Link>
+                        ))}
+
+
 
                     </div>
                 </div>
+
             </div>
         </>
     );

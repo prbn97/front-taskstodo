@@ -5,10 +5,11 @@ export default function ErrorPage() {
     const error = useRouteError();
 
     return (
-        <div className="container">
+        <>
             <div className="row">
                 <Header />
             </div>
+
             <div className="row">
                 <div className="col-md-6 offset-md-3">
                     <h1 className="mt-3">Oops!</h1>
@@ -19,6 +20,6 @@ export default function ErrorPage() {
                     </p>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

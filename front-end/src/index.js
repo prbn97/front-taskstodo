@@ -5,6 +5,9 @@ import App from './App';
 import ErrorPage from './components/pages/ErrorPage';
 import Home from './components/pages/Home';
 import Login from './components/pages/Login';
+import Tasks from './components/pages/Tasks';
+import Task from './components/pages/Task';
+
 
 const router = createBrowserRouter([
   {
@@ -13,10 +16,20 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Home /> },
+
+      {
+        path: "/tasks",
+        element: <Tasks />,
+      },
+      {
+        path: "/tasks/:id",
+        element: <Task />,
+      },
       {
         path: "/login",
         element: <Login />,
-      }
+      },
+
     ]
   }
 ])
