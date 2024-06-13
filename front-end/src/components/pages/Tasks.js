@@ -5,25 +5,26 @@ import { Link, useOutletContext } from "react-router-dom";
 
 const Tasks = () => {
     const [tasks, setTasks] = useState([]);
-    const { user } = useOutletContext(); // Obter o estado do usuário do contexto
+    const { user } = useOutletContext(); // get user context 
 
     useEffect(() => {
-        if (user) { // Só carregar as tarefas se o usuário estiver logado
-            let mockTaskList = [
-                {
-                    id: 1,
-                    title: "Task 1",
-                    description: "description of the task #1",
-                    status: "toDo",
-                },
-                {
-                    id: 2,
-                    title: "Task 2",
-                    description: "description of the task #2",
-                    status: "ToDo",
-                },
-            ];
-            setTasks(mockTaskList);
+        if (user) { // mock login
+
+            const headers = new Headers();
+            headers.append("Content-Type", "application/json")
+
+            const requestOptions = {
+                method: "GET",
+                headers: headers,
+            }
+            fetch(`http://localhost:8080/tasks`, requestOptions)
+                .then((response) => response.json())
+                .then((data) => {
+                    setTasks(data);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
         }
     }, [user]);
 
