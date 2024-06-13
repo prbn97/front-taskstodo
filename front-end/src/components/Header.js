@@ -42,7 +42,7 @@ function Header({ jwtToken, setJwtToken, user, setUser }) {
                                 disabled={jwtToken === ""}
                             >
                                 <img alt="" src={create} width="30" height="30"
-                                    className="d-inline-block align-top me-1" />
+                                    className="d-inline-block align-top" />
                                 Create Task
                             </Nav.Link>
                             {jwtToken === ""
@@ -52,17 +52,12 @@ function Header({ jwtToken, setJwtToken, user, setUser }) {
                                         className="d-inline-block align-top m-2"
                                     />
                                 </Nav.Link>
-                                : <>
-                                    <span className="navbar-text me-3">
-                                        {user ? `Welcome, ${user.name}` : ""}
-                                    </span>
-                                    <Nav.Link as={Link} to="/" onClick={handleLogout} className="d-flex align-items-center">
-                                        Logout
-                                        <img alt="" src={login} width="30" height="30"
-                                            className="d-inline-block align-top m-2"
-                                        />
-                                    </Nav.Link>
-                                </>
+                                : <Nav.Link as={Link} to="/" onClick={handleLogout} className="d-flex align-items-center">
+                                    Logout
+                                    <img alt="" src={login} width="30" height="30"
+                                        className="d-inline-block align-top m-2"
+                                    />
+                                </Nav.Link>
                             }
                         </Nav>
                     </Navbar.Collapse>
