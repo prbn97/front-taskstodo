@@ -4,7 +4,7 @@ import Header from "./components/Header";
 
 function App() {
   const [jwtToken, setJwtToken] = useState("");
-  const [user, setUser] = useState(null); // Estado para armazenar as informações do usuário
+  const [user, setUser] = useState(null);
 
   return (
     <div className="Container">
