@@ -8,14 +8,22 @@ const Task = () => {
     let { id } = useParams();
 
     useEffect(() => {
-        let mockTask =
-        {
-            id: "b950a86e8763dfdb2e70",
-            title: "Task 1",
-            description: "description of the task #1",
-            status: "toDo",
+        const headers = new Headers();
+        headers.append("Content-Type", "application/json")
+
+        const requestOptions = {
+            method: "GET",
+            headers: headers,
         }
-        setTask(mockTask);
+
+        fetch(`http://localhost:8080/tasks/${id}`, requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+                setTask(data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }, [id])
 
     return (
