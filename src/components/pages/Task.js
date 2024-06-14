@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { useParams, useOutletContext, useNavigate } from "react-router-dom";
 import logo from '../img/logo.svg';
 import edit from '../img/edit.svg';
 import close from '../img/close.svg';
 import save from '../img/save.svg';
+import del from '../img/delete.svg';
 import Title from '../Title';
-import { useParams, useOutletContext } from "react-router-dom";
 
 const Task = () => {
     const [task, setTask] = useState({});
@@ -13,6 +14,7 @@ const Task = () => {
     const [editedDescription, setEditedDescription] = useState("");
     const { user } = useOutletContext(); // get user context
     let { id } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (user) {
@@ -111,6 +113,26 @@ const Task = () => {
             });
     };
 
+    const handleDelete = () => {
+        const headers = new Headers();
+        headers.append("Content-Type", "application/json");
+
+        const requestOptions = {
+            method: "DELETE",
+            headers: headers,
+        };
+
+        fetch(`http://localhost:8080/tasks/${id}`, requestOptions)
+            .then((response) => {
+                if (response.ok) {
+                    navigate('/tasks');
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    };
+
     return (
         <>
             <div className="container">
@@ -150,6 +172,14 @@ const Task = () => {
                                                 height="30"
                                                 className="ms-2 cursor-pointer"
                                                 onClick={handleCancelClick}
+                                            />
+                                            <img
+                                                alt="icon-close"
+                                                src={del}
+                                                width="30"
+                                                height="30"
+                                                className="ms-2 cursor-pointer"
+                                                onClick={handleDelete}
                                             />
                                         </>
                                     )}

@@ -71,7 +71,7 @@ function Header({ jwtToken, setJwtToken, user, setUser }) {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {/* Aqui você pode colocar seu formulário de criação de tarefa */}
+                    {/* POST form */}
                     <p>Form to create Task</p>
                 </Modal.Body>
                 <Modal.Footer>
