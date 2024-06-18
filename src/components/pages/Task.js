@@ -12,6 +12,7 @@ const Task = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [editedTitle, setEditedTitle] = useState("");
     const [editedDescription, setEditedDescription] = useState("");
+    const [errors, setErrors] = useState({});
     const { user } = useOutletContext(); // get user context
     let { id } = useParams();
     const navigate = useNavigate();
@@ -56,7 +57,21 @@ const Task = () => {
         setIsEditing(true);
     };
 
+    const validateForm = () => {
+        const newErrors = {};
+        if (!editedTitle.trim()) {
+            newErrors.title = "Title cannot be empty or just spaces.";
+        }
+        return newErrors;
+    };
+
     const handleSaveClick = () => {
+        const validationErrors = validateForm();
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+
         const headers = new Headers();
         headers.append("Content-Type", "application/json");
 
@@ -74,6 +89,7 @@ const Task = () => {
             .then((data) => {
                 setTask(data);
                 setIsEditing(false); // close editing 
+                setErrors({});
             })
             .catch(err => {
                 console.log(err);
@@ -84,6 +100,7 @@ const Task = () => {
         setEditedTitle(task.title);
         setEditedDescription(task.description);
         setIsEditing(false);
+        setErrors({});
     };
 
     const handleTitleChange = (event) => {
@@ -190,10 +207,15 @@ const Task = () => {
                                         <div className="col">
                                             <input
                                                 type="text"
-                                                className="form-control"
+                                                className={`form-control ${errors.title ? 'is-invalid' : ''}`}
                                                 value={editedTitle}
                                                 onChange={handleTitleChange}
                                             />
+                                            {errors.title && (
+                                                <div className="invalid-feedback">
+                                                    {errors.title}
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 )}

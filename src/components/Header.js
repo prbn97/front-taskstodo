@@ -50,7 +50,7 @@ function Header({ jwtToken, setJwtToken, user, setUser }) {
         fetch(`http://localhost:8080/tasks`, requestOptions)
             .then((response) => {
                 if (response.ok) {
-                    navigate('/');
+                    navigate('/tasks');
                 }
             })
             .catch(err => {
@@ -72,7 +72,7 @@ function Header({ jwtToken, setJwtToken, user, setUser }) {
         <>
             <Navbar expand="lg" className="bg-body-tertiary">
                 <Container className="d-flex justify-content-between align-items-center">
-                    <Navbar.Brand as={Link} to="/tasks" className="d-flex align-items-center">
+                    <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
                         <img
                             alt=""
                             src={logo}
